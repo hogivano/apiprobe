@@ -1,0 +1,32 @@
+{
+  "name": "apiprobe",
+  "version": "0.1.0",
+  "description": "Point it at a running API. It reports which scalability and robustness properties the API actually has.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "bin": { "apiprobe": "./dist/cli.js" },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test --experimental-strip-types test/probes/*.test.ts",
+    "fixture:bad": "node --experimental-strip-types test/fixtures/bad-api.ts",
+    "fixture:good": "node --experimental-strip-types test/fixtures/good-api.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["api", "pagination", "rest", "testing", "cli", "resilience"],
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.0"
+  }
+}
